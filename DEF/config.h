@@ -45,10 +45,10 @@ static const unsigned int alphas[][3]    = {          /* 透明度设置 ColFg, 
 };
 
 /* 自定义脚本位置 */
-// static const char *autostartscript = "$DWM/autostart.sh";
-static const char *autostartscript = "/home/npc/github/dwm/DEF/autostart.sh";
-// static const char *statusbarscript = "$DWM/statusbar/statusbar.sh";
-static const char *statusbarscript = "/home/npc/github/dwm/DEF/statusbar/statusbar.sh";
+static const char *autostartscript = "$DWM/autostart.sh";
+// static const char *autostartscript = "/home/npc/github/dwm/DEF/autostart.sh";
+static const char *statusbarscript = "$DWM/statusbar/statusbar.sh";
+// static const char *statusbarscript = "/home/npc/github/dwm/DEF/statusbar/statusbar.sh";
 
 /* 自定义 scratchpad instance */
 static const char scratchpadname[] = "scratchpad";
@@ -57,15 +57,26 @@ static const char scratchpadname[] = "scratchpad";
 /* 自定义特定实例的显示状态 */
 //            ﮸  ﭮ 切
 static const char *tags[] = {
-    "", // tag:0  key:1  desc:terminal1
-    "", // tag:1  key:2  desc:terminal2
-    "", // tag:2  key:3  desc:terminal3
-    "󰕧", // tag:4  key:9  desc:obs
-    "", // tag:5  key:c  desc:chrome
-    "", // tag:6  key:m  desc:music
-    "ﬄ", // tag:7  key:0  desc:qq
-    "﬐", // tag:8  key:w  desc:wechat
-    "", // tag:9  key:l  desc:wxwork
+    // "", // tag:0  key:1  desc:terminal1
+    // "", // tag:1  key:2  desc:terminal2
+    // "", // tag:2  key:3  desc:terminal3
+    // "󰕧", // tag:4  key:9  desc:obs
+    // "", // tag:5  key:c  desc:chrome
+    // "", // tag:6  key:m  desc:music
+    // "ﬄ", // tag:7  key:0  desc:qq
+    // "﬐", // tag:8  key:w  desc:wechat
+    // "", // tag:9  key:l  desc:wxwork
+
+    "1": "1 󰨞 ",
+    "2": "2  ",
+    "3": "3  ",
+    "4": "4  ",
+    "5": "5  ",
+    "6": "6  ",
+    "7": "7  ",
+    "8": "8 ",
+    "9": "9 ",
+    "10": "10  ",
 };
 
 /* 自定义窗口显示规则 */
@@ -101,7 +112,7 @@ static const Rule rules[] = {
 
     /** 部分特殊class的规则 */
     {"float",                NULL,                 NULL,             0,            1,          0,          0,        -1,      0}, // class = float       浮动
-    {"global",               NULL,                 NULL,             TAGMASK,      0,          1,          0,        -1,      0}, // class = gloabl      全局
+    {"global",               NULL,                 NULL,             TAGMASK,      0,          1,          0,        -1,      0}, // class = global      全局
     {"noborder",             NULL,                 NULL,             0,            0,          0,          1,        -1,      0}, // class = noborder    无边框
     {"FGN",                  NULL,                 NULL,             TAGMASK,      1,          1,          1,        -1,      0}, // class = FGN         浮动、全局、无边框
     {"FG",                   NULL,                 NULL,             TAGMASK,      1,          1,          0,        -1,      0}, // class = FG          浮动、全局
@@ -113,11 +124,11 @@ static const Rule rules[] = {
     { NULL,                  NULL,                "broken",          0,            1,          0,          0,        -1,      0}, // 错误载入时 会有broken 浮动
 };
 static const char *overviewtag = "OVERVIEW";
-static const Layout overviewlayout = { "舘",  overview };
+static const Layout overviewlayout = { "",  overview };
 
 /* 自定义布局 */
 static const Layout layouts[] = {
-    { "﬿",  tile },         /* 主次栈 */
+    { "T",  tile },         /* 主次栈 */
     { "﩯",  magicgrid },    /* 网格 */
 };
 
@@ -139,6 +150,8 @@ static Key keys[] = {
 
     { MODKEY,              XK_Left,         viewtoleft,       {0} },                     /* super left         |  聚焦到左边的tag */
     { MODKEY,              XK_Right,        viewtoright,      {0} },                     /* super right        |  聚焦到右边的tag */
+    { MODKEY,              Button4,         viewtoleft,       {0} },                     /* 鼠标滚轮上         |  tag          |  向前切换tag */
+    { MODKEY,              Button5,         viewtoright,      {0} },                     /* 鼠标滚轮         |  tag          |  向前切换tag */
     { MODKEY|ShiftMask,    XK_Left,         tagtoleft,        {0} },                     /* super shift left   |  将本窗口移动到左边tag */
     { MODKEY|ShiftMask,    XK_Right,        tagtoright,       {0} },                     /* super shift right  |  将本窗口移动到右边tag */
 
@@ -194,7 +207,8 @@ static Key keys[] = {
     { MODKEY|ShiftMask,    XK_l,            exchange_client,  {.i = RIGHT } },           /* super shift l      | 二维交换窗口 (仅平铺) */
 
     /* spawn + SHCMD 执行对应命令(已下部分建议完全自己重新定义) */
-    { MODKEY,              XK_s,      togglescratch, SHCMD("st -t scratchpad -c float") },                      /* super s          | 打开scratch终端        */
+    // { MODKEY,              XK_s,      togglescratch, SHCMD("st -t scratchpad -c float") },                      /* super s          | 打开scratch终端        */
+    { MODKEY,              XK_s,      togglescratch, SHCMD("foot") },                      /* super s          | 打开scratch终端        */
     { MODKEY,              XK_Return, spawn, SHCMD("kitty") },                                                     /* super enter      | 打开st终端             */
     // { MODKEY,              XK_minus,  spawn, SHCMD("st -c FG") },                                               /* super +          | 打开全局st终端         */
     // { MODKEY,              XK_space,  spawn, SHCMD("st -c float") },                                            /* super space      | 打开浮动st终端         */
@@ -213,6 +227,13 @@ static Key keys[] = {
     TAGKEYS(XK_1, 0, 0)
     TAGKEYS(XK_2, 1, 0)
     TAGKEYS(XK_3, 2, 0)
+    TAGKEYS(XK_4, 4, 0)
+    TAGKEYS(XK_5, 5, 0)
+    TAGKEYS(XK_6, 6, 0)
+    TAGKEYS(XK_7, 7, 0)
+    TAGKEYS(XK_8, 8, 0)
+    TAGKEYS(XK_9, 9, 0)
+    TAGKEYS(XK_0, 10, 0)
     // TAGKEYS(XK_9, 3, "obs")
     // TAGKEYS(XK_c, 4, "google-chrome-stable")
     // TAGKEYS(XK_m, 5, "~/scripts/music_player.sh")
