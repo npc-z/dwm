@@ -199,7 +199,7 @@ static Key keys[] = {
     // { MODKEY,              XK_minus,  spawn, SHCMD("st -c FG") },                                               /* super +          | 打开全局st终端         */
     // { MODKEY,              XK_space,  spawn, SHCMD("st -c float") },                                            /* super space      | 打开浮动st终端         */
     // { MODKEY,              XK_F1,     spawn, SHCMD("killall pcmanfm || pcmanfm") },                             /* super F1         | 打开/关闭pcmanfm       */
-    { MODKEY,              XK_p,      spawn, SHCMD("wofi -show drun") },                                         /* super d          | rofi: 执行run          */
+    { MODKEY,              XK_p,      spawn, SHCMD("rofi -show drun") },                                         /* super d          | rofi: 执行run          */
     { MODKEY,              XK_d,      spawn, SHCMD("$DWM/DEF/rofi.sh") },                                       /* super p          | rofi: 执行自定义脚本   */
     // { MODKEY,              XK_n,      spawn, SHCMD("$DWM/DEF/blurlock.sh") },                                   /* super n          | 锁定屏幕               */
     // { MODKEY|ShiftMask,    XK_Up,     spawn, SHCMD("$DWM/DEF/set_vol.sh up") },                                 /* super shift up   | 音量加                 */
