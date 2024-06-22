@@ -17,8 +17,8 @@ daemons() {
     $_thisdir/statusbar/statusbar.sh cron &   # 开启状态栏定时更新
     # xss-lock -- ~/scripts/blurlock.sh &       # 开启自动锁屏程序
     # fcitx5 &                                  # 开启输入法
-    fcitx5 -d --replace
-    clipse -listen
+    fcitx5 -d --replace >> /dev/null 2>&1 &
+    clipse -listen >> /dev/null 2>&1 &
     numlock on
     # lemonade server &                         # 开启lemonade 远程剪切板支持
     # flameshot &                               # 截图要跑一个程序在后台 不然无法将截图保存到剪贴板
@@ -33,7 +33,7 @@ cron() {
     let i=10
     while true; do
         # [ $((i % 10)) -eq 0 ] && ~/scripts/set_screen.sh check # 每10秒检查显示器状态 以此自动设置显示器
-        [ $((i % 10)) -eq 0 ] && feh --randomize --bg-fill ~/.config/wallpapers/* # 每300秒更新壁纸
+        [ $((i % 20)) -eq 0 ] && feh --randomize --bg-fill ~/.config/wallpapers/* # 每300秒更新壁纸
         sleep 10; let i+=10
     done
 }
