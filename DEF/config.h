@@ -23,30 +23,32 @@ static const unsigned int snap           = 10;        /* 边缘依附宽度 */
 static const unsigned int baralpha       = 0xc0;      /* 状态栏透明度 */
 static const unsigned int borderalpha    = 0xdd;      /* 边框透明度 */
 static const char *fonts[]               = { "JetBrainsMono Nerd Font:style=medium:size=13", "monospace:size=13" };
-static const char *colors[][3]           = {          /* 颜色设置 ColFg, ColBg, ColBorder */ 
+static const char *colors[][3]           = {          /* 颜色设置 ColFg, ColBg, ColBorder */
     [SchemeNorm] = { "#bbbbbb", "#333333", "#444444" },
     [SchemeSel] = { "#ffffff", "#37474F", "#42A5F5" },
     [SchemeSelGlobal] = { "#ffffff", "#37474F", "#FFC0CB" },
     [SchemeHid] = { "#dddddd", NULL, NULL },
     [SchemeSystray] = { NULL, "#7799AA", NULL },
-    [SchemeUnderline] = { "#7799AA", NULL, NULL }, 
+    [SchemeUnderline] = { "#7799AA", NULL, NULL },
     [SchemeNormTag] = { "#bbbbbb", "#333333", NULL },
     [SchemeSelTag] = { "#eeeeee", "#333333", NULL },
     [SchemeBarEmpty] = { NULL, "#111111", NULL },
 };
-static const unsigned int alphas[][3]    = {          /* 透明度设置 ColFg, ColBg, ColBorder */ 
-    [SchemeNorm] = { OPAQUE, baralpha, borderalpha }, 
+static const unsigned int alphas[][3]    = {          /* 透明度设置 ColFg, ColBg, ColBorder */
+    [SchemeNorm] = { OPAQUE, baralpha, borderalpha },
     [SchemeSel] = { OPAQUE, baralpha, borderalpha },
     [SchemeSelGlobal] = { OPAQUE, baralpha, borderalpha },
-    [SchemeNormTag] = { OPAQUE, baralpha, borderalpha }, 
+    [SchemeNormTag] = { OPAQUE, baralpha, borderalpha },
     [SchemeSelTag] = { OPAQUE, baralpha, borderalpha },
     [SchemeBarEmpty] = { NULL, 0x11, NULL },
     [SchemeStatusText] = { OPAQUE, 0x88, NULL },
 };
 
 /* 自定义脚本位置 */
-static const char *autostartscript = "$DWM/autostart.sh";
-static const char *statusbarscript = "$DWM/statusbar/statusbar.sh";
+// static const char *autostartscript = "$DWM/autostart.sh";
+static const char *autostartscript = "/home/npc/github/dwm/DEF/autostart.sh";
+// static const char *statusbarscript = "$DWM/statusbar/statusbar.sh";
+static const char *statusbarscript = "/home/npc/github/dwm/DEF/statusbar/statusbar.sh";
 
 /* 自定义 scratchpad instance */
 static const char scratchpadname[] = "scratchpad";
@@ -54,7 +56,7 @@ static const char scratchpadname[] = "scratchpad";
 /* 自定义tag名称 */
 /* 自定义特定实例的显示状态 */
 //            ﮸  ﭮ 切
-static const char *tags[] = { 
+static const char *tags[] = {
     "", // tag:0  key:1  desc:terminal1
     "", // tag:1  key:2  desc:terminal2
     "", // tag:2  key:3  desc:terminal3
@@ -193,16 +195,15 @@ static Key keys[] = {
 
     /* spawn + SHCMD 执行对应命令(已下部分建议完全自己重新定义) */
     { MODKEY,              XK_s,      togglescratch, SHCMD("st -t scratchpad -c float") },                      /* super s          | 打开scratch终端        */
-    { MODKEY,              XK_Return, spawn, SHCMD("st") },                                                     /* super enter      | 打开st终端             */
-    { MODKEY,              XK_minus,  spawn, SHCMD("st -c FG") },                                               /* super +          | 打开全局st终端         */
-    { MODKEY,              XK_space,  spawn, SHCMD("st -c float") },                                            /* super space      | 打开浮动st终端         */
-    { MODKEY,              XK_F1,     spawn, SHCMD("killall pcmanfm || pcmanfm") },                             /* super F1         | 打开/关闭pcmanfm       */
-    { MODKEY,              XK_d,      spawn, SHCMD("rofi -show run") },                                         /* super d          | rofi: 执行run          */
+    { MODKEY,              XK_Return, spawn, SHCMD("kitty") },                                                     /* super enter      | 打开st终端             */
+    // { MODKEY,              XK_minus,  spawn, SHCMD("st -c FG") },                                               /* super +          | 打开全局st终端         */
+    // { MODKEY,              XK_space,  spawn, SHCMD("st -c float") },                                            /* super space      | 打开浮动st终端         */
+    // { MODKEY,              XK_F1,     spawn, SHCMD("killall pcmanfm || pcmanfm") },                             /* super F1         | 打开/关闭pcmanfm       */
     { MODKEY,              XK_p,      spawn, SHCMD("$DWM/DEF/rofi.sh") },                                       /* super p          | rofi: 执行自定义脚本   */
-    { MODKEY,              XK_n,      spawn, SHCMD("$DWM/DEF/blurlock.sh") },                                   /* super n          | 锁定屏幕               */
-    { MODKEY|ShiftMask,    XK_Up,     spawn, SHCMD("$DWM/DEF/set_vol.sh up") },                                 /* super shift up   | 音量加                 */
-    { MODKEY|ShiftMask,    XK_Down,   spawn, SHCMD("$DWM/DEF/set_vol.sh down") },                               /* super shift down | 音量减                 */
-    { MODKEY|ShiftMask,    XK_a,      spawn, SHCMD("flameshot gui -c -p ~/Pictures/screenshots") },             /* super shift a    | 截图                   */
+    // { MODKEY,              XK_n,      spawn, SHCMD("$DWM/DEF/blurlock.sh") },                                   /* super n          | 锁定屏幕               */
+    // { MODKEY|ShiftMask,    XK_Up,     spawn, SHCMD("$DWM/DEF/set_vol.sh up") },                                 /* super shift up   | 音量加                 */
+    // { MODKEY|ShiftMask,    XK_Down,   spawn, SHCMD("$DWM/DEF/set_vol.sh down") },                               /* super shift down | 音量减                 */
+    // { MODKEY|ShiftMask,    XK_a,      spawn, SHCMD("flameshot gui -c -p ~/Pictures/screenshots") },             /* super shift a    | 截图                   */
     { MODKEY|ShiftMask,    XK_q,      spawn, SHCMD("kill -9 $(xprop | grep _NET_WM_PID | awk '{print $3}')") }, /* super shift q    | 选中某个窗口并强制kill */
 
     /* super key : 跳转到对应tag (可附加一条命令 若目标目录无窗口，则执行该命令) */
