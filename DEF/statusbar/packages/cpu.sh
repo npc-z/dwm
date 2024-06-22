@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /usr/bin/env bash
 # CPU 获取CPU使用率和温度的脚本
 
 tempfile=$(cd $(dirname $0);cd ..;pwd)/temp
@@ -12,9 +12,9 @@ with_temp() {
     # check
     [ ! "$(command -v sensors)" ] && echo command not found: sensors && return
 
-    temp_text=$(sensors | grep Tctl | awk '{printf "%d°C", $2}')  
+    temp_text=$(sensors | grep Tctl | awk '{printf "%d°C", $2}')
     text=" $cpu_text $temp_text "
-} 
+}
 
 update() {
     cpu_icon="閭"

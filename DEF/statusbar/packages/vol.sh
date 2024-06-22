@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /usr/bin/env bash
 # VOL 音量脚本
 # 本脚本需要你自行修改音量获取命令
 # 例如我使用的是 pipewire
@@ -11,7 +11,7 @@
 #         Sample Specification: float32le 2ch 48000Hz
 #         Channel Map: front-left,front-right
 #         Owner Module: 4294967295
-# 静音 -> Mute: no                                                                                 
+# 静音 -> Mute: no
 # 音量 -> Volume: front-left: 13183 /  20% / -41.79 dB,   front-right: 13183 /  20% / -41.79 dB
 
 tempfile=$(cd $(dirname $0);cd ..;pwd)/temp

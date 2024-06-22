@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /usr/bin/env bash
 # DATE 获取日期和时间的脚本
 
 tempfile=$(cd $(dirname $0);cd ..;pwd)/temp
@@ -43,7 +43,7 @@ call_todo() {
     pid2=`ps aux | grep 'st -t statusutil_todo' | grep -v grep | awk '{print $2}'`
     mx=`xdotool getmouselocation --shell | grep X= | sed 's/X=//'`
     my=`xdotool getmouselocation --shell | grep Y= | sed 's/Y=//'`
-    kill $pid1 && kill $pid2 || st -t statusutil_todo -g 50x15+$((mx - 200))+$((my + 20)) -c FGN -e nvim ~/.todo.md 
+    kill $pid1 && kill $pid2 || st -t statusutil_todo -g 50x15+$((mx - 200))+$((my + 20)) -c FGN -e nvim ~/.todo.md
 }
 
 click() {
